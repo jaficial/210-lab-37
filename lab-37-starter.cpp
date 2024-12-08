@@ -5,7 +5,7 @@
 #include <string>
 #include <map>
 using namespace std;
-
+//
 int sum_ascii(string);
 
 int sum_ascii(string string_data){
