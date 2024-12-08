@@ -55,11 +55,14 @@ int main() {
         getline(fin, temp_data);
         temp_hash_index = gen_hash_index(temp_data);
         
-        if (hash_table.find(temp_hash_index) != hash_table.end()){
-            hash_table.insert(pair<int, list<string>> (temp_hash_index, temp_data));
+        // NOTE: checks if the key already exists in the hash_table
+        // if index doesnt exist, create new pair and insert to hash_table
+        if (hash_table.find(temp_hash_index) == hash_table.end()){ // CITED: from geeksforgeeks: https://www.geeksforgeeks.org/map-find-function-in-c-stl/
+            string value_list_name = (string) temp_hash_index;
+            hash_table.insert(temp_hash_index, list<string> (string) temp_hash_index)
         }
         
-        
+        // WRITING ON WHITEBOARD
 
     }
     
