@@ -35,7 +35,12 @@ int gen_hash_index(string string_data){
             - Display the first 100 map entries to the console 
                 - access map elements with ".first" and ".second"
             - REMEMBER: the value of the map will be a linked list
+            - NOTE: some strings in the data.txt file will be equal to each other, 
+                    put the strings with the same hash index in the same value list 
+                    corresponding to its respective hash index
 */
+
+
 int main() {
     ifstream fin("lab-37-data.txt");
     string temp_data;
