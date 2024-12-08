@@ -5,11 +5,12 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <list>
 using namespace std;
 
-int sum_ascii(string);
+int gen_hash_index(string);
 
-int sum_ascii(string string_data){
+int gen_hash_index(string string_data){
     int string_length = string_data.length();
     int ascii_total = 0;
     for (int i = 0; i < string_length; i++){
@@ -23,17 +24,28 @@ int sum_ascii(string string_data){
     DONE PART 1: "sum_ascii" receives a single string and returns the 
              sum of the string's ASCII values
              - do so by type casting a char into an int 
-         PART 2: Read the data text file, into main, then find the GRAND TOTAL ascii value
+    DONE PART 2: Read the data text file, into main, then find the GRAND TOTAL ascii value
              - should be 69893419
+         PART 3: Change "sum_ascii" to "gen_hash_index()" 
+             - Next create the hash table data structure:
+                - Use a std::map named hash_table
+                - Key should be an int (hash index)
+                - value should be a std::list
+                    - the list will contain the strings from the data.txt file
+            - Display the first 100 map entries to the console 
+                - access map elements with ".first" and ".second"
+            - REMEMBER: the value of the map will be a linked list
 */
 int main() {
     ifstream fin("lab-37-data.txt");
     string temp_data;
     int grand_total = 0;
     
+    map <int, list<string>> hash_table;
+
     while (!fin.eof()){
         getline(fin, temp_data);
-        grand_total = grand_total + sum_ascii(temp_data);
+        grand_total = grand_total + gen_hash_index(temp_data);
     }
     cout << "The grand total is expected to be: 69893419" << endl;
     cout << "The actual grand total is: " << grand_total << endl;
