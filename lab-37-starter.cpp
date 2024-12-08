@@ -19,9 +19,11 @@ int sum_ascii(string string_data){
 }
 /*
     THINGS TO DO: 
-    PART 1: "sum_ascii" receives a single string and returns the 
+    DONE PART 1: "sum_ascii" receives a single string and returns the 
              sum of the string's ASCII values
              - do so by type casting a char into an int 
+         PART 2: Read the data text file, into main, then find the GRAND TOTAL ascii value
+             - should be 69893419
 */
 int main() {
     char a = 'A';
