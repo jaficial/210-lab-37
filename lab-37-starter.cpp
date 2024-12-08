@@ -2,10 +2,11 @@
 // github link: https://github.com/jaficial/210-lab-37.git
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <map>
 using namespace std;
-//
+
 int sum_ascii(string);
 
 int sum_ascii(string string_data){
@@ -26,18 +27,18 @@ int sum_ascii(string string_data){
              - should be 69893419
 */
 int main() {
-    char a = 'A';
-    cout << a << endl;
-    cout << (int) a << endl;
-    int b = 66;
-    cout << b << endl;
-    cout << (char) b << endl;
+    ifstream fin("lab-37-data.txt");
+    string temp_data;
+    int grand_total = 0;
     
-    string test = "A";
-    int total = sum_ascii(test);
+    while (!fin.eof()){
+        getline(fin, temp_data);
+        grand_total = grand_total + sum_ascii(temp_data);
+    }
+    cout << "The grand total is expected to be: 69893419" << endl;
+    cout << "The actual grand total is: " << grand_total << endl;
 
-    cout << "This is the total of string_data: " << total << endl;
-
+    fin.close();
     return 0;
 }
 
