@@ -38,22 +38,29 @@ int gen_hash_index(string string_data){
             - NOTE: some strings in the data.txt file will be equal to each other, 
                     put the strings with the same hash index in the same value list 
                     corresponding to its respective hash index
+                - push string to the front for each string to be appended to a list
 */
 
 
 int main() {
     ifstream fin("lab-37-data.txt");
     string temp_data;
-    int grand_total = 0;
+    int temp_hash_index = 0;
     
     map <int, list<string>> hash_table;
-
+    
+    // NOTE: need to have test if the hash index is already in the map
     while (!fin.eof()){
         getline(fin, temp_data);
-        grand_total = grand_total + gen_hash_index(temp_data);
+        temp_hash_index = gen_hash_index(temp_data);
+        
+        for (auto pair : hash_table){
+            if pair.first 
+        }
+
     }
-    cout << "The grand total is expected to be: 69893419" << endl;
-    cout << "The actual grand total is: " << grand_total << endl;
+    
+    cout << "Reached the end of the file" << endl;
 
     fin.close();
     return 0;
