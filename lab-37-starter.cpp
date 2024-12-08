@@ -46,6 +46,7 @@ int main() {
     ifstream fin("lab-37-data.txt");
     string temp_data;
     int temp_hash_index = 0;
+    int grand_total = 0;
     
     map <int, list<string>> hash_table;
     
@@ -54,13 +55,16 @@ int main() {
         getline(fin, temp_data);
         temp_hash_index = gen_hash_index(temp_data);
         
-        for (auto pair : hash_table){
-            if pair.first 
+        if (hash_table.find(temp_hash_index) != hash_table.end()){
+            hash_table.insert(pair<int, list<string>> (temp_hash_index, temp_data));
         }
+        
+        
 
     }
     
     cout << "Reached the end of the file" << endl;
+    cout << "This is the size of the hash table: " << hash_table.size() << endl;
 
     fin.close();
     return 0;
