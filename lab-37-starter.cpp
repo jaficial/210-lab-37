@@ -41,6 +41,8 @@ void menu_display(){
     cout << "[6] Exit" << endl;
 }
 
+// Utilizes code from my lab-37 main file submission, and outputs the first
+// 100 elements of the hash table.
 void display_100(map<int, list<string>> &hash_table){
     auto hash_table_iterator = hash_table.begin();
     hash_table_iterator++;
@@ -64,6 +66,7 @@ void display_100(map<int, list<string>> &hash_table){
     }
 }
 
+// Utilizes the ".find()" method to search for the specified hash_key
 bool search_key(map<int, list<string>> &hash_table, int hash_key){
     if (hash_table.find(hash_key) != hash_table.end()){
         cout << hash_key << " is an existing key in the hash table." << endl;
@@ -75,10 +78,14 @@ bool search_key(map<int, list<string>> &hash_table, int hash_key){
     }
 }
 
+// remove_key takes in a verified, existing hash key, and the hash table
+// as parameters, and uses the ".erase()" method to delete the specified key
 void remove_key(map<int, list<string>> &hash_table, int hash_key){
     hash_table.erase(hash_key);
 }
 
+// modify_key takes in a verified, existing hash key, and presents the user
+// with options of editing the value of the specified hash key
 void modify_key(map<int, list<string>> &hash_table, int hash_key){
     int menu_choice = 0;
     cout << "[1] Pop Front Element" << endl;
@@ -89,11 +96,17 @@ void modify_key(map<int, list<string>> &hash_table, int hash_key){
     if (menu_choice == 1){
         hash_table[hash_key].pop_front();
         cout << hash_key << " was modified from the hash table." << endl;
+        if (hash_table[hash_key].size() == 0){
+            remove_key(hash_table, hash_key);
+        }
     }
 
     else if (menu_choice == 2){
         hash_table[hash_key].pop_back();
         cout << hash_key << " was modified from the hash table." << endl;
+        if (hash_table[hash_key].size() == 0){
+            remove_key(hash_table, hash_key);
+        }
     }
 
     else if (menu_choice < 1 || menu_choice > 3){
@@ -106,6 +119,8 @@ void modify_key(map<int, list<string>> &hash_table, int hash_key){
     
 }
 
+// add_key takes in a verified, non-existing hash_key, string value, and the hash table
+// as parameters, and utilizes the ".push_back()" method insert a new key-value pair into hash table. 
 void add_key(map<int, list<string>> &hash_table, int hash_key, string value){
     hash_table[hash_key].push_back(value);
 }
