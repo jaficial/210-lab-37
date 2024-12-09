@@ -36,7 +36,8 @@ void menu_display(){
     cout << "[2] Search for a Key" << endl;
     cout << "[3] Remove a Key" << endl;
     cout << "[4] Modify a Key" << endl;
-    cout << "[5] Exit" << endl;
+    cout << "[5] Add a Key" << endl;
+    cout << "[6] Exit" << endl;
 }
 
 void display_100(map<int, list<string>> &hash_table){
@@ -77,6 +78,9 @@ void remove_key(map<int, list<string>> &hash_table, int hash_key){
     hash_table.erase(hash_key);
 }
 
+void modify_key(map<int, list<string>> &hash_table, int hash_key){
+    
+}
 int main() {
     ifstream fin("lab-37-data.txt");
     string temp_data;
@@ -105,11 +109,11 @@ int main() {
     int interaction = 0;
     int key_value = 0;
 
-    while (interaction != 5){
+    while (interaction != 6){
         menu_display();
         cin >> interaction;
 
-        if (interaction == 5){
+        if (interaction == 6){
             cout << "Exiting Program..." << endl;
         }
 
@@ -131,6 +135,17 @@ int main() {
             }
             else {
                 remove_key(hash_table, key_value);
+            }
+        }
+
+        else if (interaction == 4){
+            cout << endl << "Input which key you'd like to modify: ";
+            cin >> key_value;
+            if (!search_key(hash_table, key_value)){
+                cout << "The key does not exist in the hash table, thus nothing has been removed." << endl;
+            }
+            else {
+                
             }
         }
     }
