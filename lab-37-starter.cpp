@@ -70,35 +70,23 @@ int main() {
     }
     
     // NOTE: found out that there is a "0" key and value pair, most likely from the last line of the data.txt file being empty
-    map<int, list<string>>::iterator hash_table_iterator = hash_table.begin();
+    auto hash_table_iterator = hash_table.begin();
     hash_table_iterator++;
-    cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
+    // cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
 
     auto list_iterator = hash_table_iterator->second.begin();
-    cout << "This is the size of the actual first key's list: " << list_iterator->size() << endl;
-    cout << "This is the first element of the key's list: " << *list_iterator << endl << endl;
-
+    auto last_list_iter = hash_table_iterator->second.end();
+    // cout << "This is the size of the actual first key's list: " << list_iterator->size() << endl;
+    cout << "This is the first element of the key's list: " << *list_iterator << endl;
+    cout << "This is the last element of the key's list: " << *last_list_iter << endl;
+    // list_iterator++;
+    // cout << "This is the next element of the key's list: " << *list_iterator << endl;
+    cout << "SHOULD END HERE" << endl;
     // NOTE: Something is wrong with the if else conditions
-    for (int i = 1; i < 101; i++){
-        if (list_iterator == hash_table_iterator->second.end()){
-            cout << "" << setw(4) << i << ". ";
-            cout << *list_iterator << endl;
-            hash_table_iterator++;
-            list_iterator = hash_table_iterator->second.begin();
-            cout << hash_table_iterator->first << endl;
-        }
-
-        else {
-            cout << "" << setw(4) << i << ". ";
-            cout << *list_iterator << endl;
-            list_iterator++;
-        }
-    }
-    
-    // NOTE: try using static to hold the iterator position of the value's list
+    //       - also, the key isn't outputting correctly
     // for (int i = 1; i < 101; i++){
-    //     cout << i << ". ";
-    //     if (list_iterator == hash_table_iterator->second.end()){
+    //     if (list_iterator == last_list_iter){
+    //         cout << "MADE IT TO THE END OF THE LIST" << endl;
     //         cout << "" << setw(4) << i << ". ";
     //         cout << *list_iterator << endl;
     //         hash_table_iterator++;
