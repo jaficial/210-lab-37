@@ -81,28 +81,33 @@ int main() {
     // BIG NOTE: I'VE BEEN ACCESSING RANDOM MEMORY, THAT'S WHY THE LOOPS / IF/ELSE CONDITIONS AREN'T WORKING
 
     auto list_iterator = hash_table_iterator->second.begin();
-
-    // DOESN'TWORK
-    if (list_iterator != hash_table_iterator->second.end()){
+    auto last_list_element = hash_table_iterator->second.end();
+    last_list_element--;
+    // WORKS
+    // NOTE: When using the .end() method, it points to one element past the last element of the list
+    //       - so be sure to iterate 1 backwards
+    if (hash_table_iterator->second.begin() == last_list_element){
         cout << "" << setw(4) << *list_iterator << endl;
     }
-
-
-    // COME BACK HERE 
-    // cout << "Key " << hash_table_iterator->first << ":" << endl;
+    for (auto iter : hash_table){
+        cout << 
+    }
     
-    // for (int i = 1; i < 101; i++){
-    //     if ((hash_table_iterator->second.size() == 1) || (list_iterator == hash_table_iterator->second.end())){
-    //         cout << "" << setw(4) << i << ". " << *list_iterator << endl;
-    //         hash_table_iterator++;
-    //         list_iterator = hash_table_iterator->second.begin();
-    //         cout << "Key " << hash_table_iterator->first << ":" << endl; 
-    //     }
+    for (int i = 1; i < 101; i++){
+        if ((hash_table_iterator->second.size() == 1) || (list_iterator == last_list_element)){
+            cout << "" << setw(4) << i << ". " << *list_iterator << endl;
+            hash_table_iterator++;
+            list_iterator = hash_table_iterator->second.begin();
+            last_list_element = hash_table_iterator->second.end();
+            last_list_element--;
+            cout << "Key " << hash_table_iterator->first << ":" << endl; 
+        }
 
-    //     else {
-    //         cout << "come back" << endl;
-    //     }
-    // }
+        else {
+            cout << "" << setw(4) << i << ". " << *list_iterator << endl;
+            list_iterator++;
+        }
+    }
     
     cout << endl << endl;
     cout << "Reached the end of the file" << endl;
