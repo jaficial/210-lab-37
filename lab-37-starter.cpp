@@ -15,6 +15,7 @@ void display_100(map<int, list<string>> &);
 bool search_key(map<int, list<string>> &, int);
 void remove_key(map<int, list<string>> &, int);
 void modify_key(map<int, list<string>> &, int);
+void add_key(map<int, list<string>> &, int, string);
 
 /* gen_hash_index iterates through each char of the string
    and adds the char's ASCII value to a total variable.
@@ -79,8 +80,13 @@ void remove_key(map<int, list<string>> &hash_table, int hash_key){
 }
 
 void modify_key(map<int, list<string>> &hash_table, int hash_key){
-    
+    // modify_key
 }
+
+void add_key(map<int, list<string>> &hash_table, int hash_key, string value){
+    hash_table[hash_key].push_back(value);
+}
+
 int main() {
     ifstream fin("lab-37-data.txt");
     string temp_data;
@@ -131,10 +137,11 @@ int main() {
             cout << endl << "Input which key you'd like to remove: ";
             cin >> key_value;
             if (!search_key(hash_table, key_value)){
-                cout << "The key does not exist in the hash table, thus nothing has been removed." << endl;
+                cout << "Nothing was removed from the hash table." << endl;
             }
             else {
                 remove_key(hash_table, key_value);
+                cout << key_value << " was removed from the hash table." << endl;
             }
         }
 
@@ -142,11 +149,31 @@ int main() {
             cout << endl << "Input which key you'd like to modify: ";
             cin >> key_value;
             if (!search_key(hash_table, key_value)){
-                cout << "The key does not exist in the hash table, thus nothing has been removed." << endl;
+                cout << "Nothing was modified from the hash table." << endl;
             }
             else {
-                
+                modify_key(hash_table, key_value);
+                cout << key_value << "was modified from the hash table." << endl;
             }
+        }
+
+        else if (interaction == 5){
+            cout << endl << "Input the value that you'd like to add: " << endl;
+            cin.ignore();
+            getline(cin, temp_data);
+            temp_hash_index = gen_hash_index(temp_data);
+
+            if (search_key(hash_table, temp_hash_index)){
+                cout << "The inputted key already exists in the hash table." << endl;
+            }
+            else {
+                cout << "The key will be added to the hash table" << endl;
+                add_key(hash_table, temp_hash_index, temp_data);
+            }
+        }
+
+        else {
+            cout << "The inputted option does not exist. Please choose from one of the available menu options." << endl;
         }
     }
 
