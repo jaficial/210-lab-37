@@ -12,6 +12,7 @@ using namespace std;
 int gen_hash_index(string);
 void menu_display();
 void display_100(map<int, list<string>> &);
+void search_key(map<int, list<string>> &);
 
 /* gen_hash_index iterates through each char of the string
    and adds the char's ASCII value to a total variable.
@@ -27,10 +28,13 @@ int gen_hash_index(string string_data){
 }
 
 void menu_display(){
+    cout << endl << "" << setw(22) << "Menu Options" << endl;
+    cout << "-------------------------------" << endl;
     cout << "[1] Print the First 100 Entries" << endl;
     cout << "[2] Search for a Key" << endl;
     cout << "[3] Remove a Key" << endl;
-    cout << "[4] Exit" << endl;
+    cout << "[4] Modify a Key" << endl;
+    cout << "[5] Exit" << endl;
 }
 
 void display_100(map<int, list<string>> &hash_table){
@@ -50,10 +54,14 @@ void display_100(map<int, list<string>> &hash_table){
             
         }
         else {
-            cout << i << ". " << *list_iterator << endl;
+            cout << "" << setw(4) << i << ". " << *list_iterator << endl;
             list_iterator++;
         }
     }
+}
+
+void search_key(map<int, list<string>> &){
+
 }
 
 int main() {
@@ -79,6 +87,21 @@ int main() {
             hash_table[temp_hash_index].push_back(temp_data);
         }
         grand_total = grand_total + temp_hash_index;
+    }
+
+    int interaction = 0;
+
+    while (interaction != 5){
+        menu_display();
+        cin >> interaction;
+
+        if (interaction == 5){
+            cout << "Exiting Program..." << endl;
+        }
+
+        else if (interaction == 1){
+            display_100(hash_table);
+        }
     }
 
     fin.close();
