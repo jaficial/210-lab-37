@@ -69,8 +69,10 @@ int main() {
     }
 
     auto hash_table_iterator = hash_table.begin();
-    for (int i = 0; i < 100; i++){
-
+    // NOTE: try using static to hold the iterator position of the value's list
+    for (int i = 1; i < 101; i++){
+        cout << i << ". ";
+        auto list_value = hash_table_iterator.second.
     }
     
     cout << "Reached the end of the file" << endl;
