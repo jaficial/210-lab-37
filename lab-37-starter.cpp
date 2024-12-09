@@ -68,28 +68,36 @@ int main() {
         grand_total = grand_total + temp_hash_index;
 
     }
-
-    auto hash_table_iterator = hash_table.begin();
-    static auto list_iterator = hash_table_iterator->second.begin();
-    cout << hash_table_iterator->first << endl;
-    // NOTE: try using static to hold the iterator position of the value's list
-    for (int i = 1; i < 101; i++){
-        cout << i << ". ";
-        if (list_iterator == hash_table_iterator->second.end()){
-            cout << "" << setw(4) << i << ". ";
-            cout << *list_iterator << endl;
-            hash_table_iterator++;
-            list_iterator = hash_table_iterator->second.begin();
-            cout << hash_table_iterator->first << endl;
-        }
-
-        else {
-            cout << "" << setw(4) << i << ". ";
-            cout << *list_iterator << endl;
-            list_iterator++;
-        }
-    }
     
+    // NOTE: found out that there is a "0" key and value pair, most likely from the last line of the data.txt file being empty
+    map<int, list<string>>::iterator hash_table_iterator = hash_table.begin();
+    int i = 0;
+    // static auto list_iterator = hash_table_iterator->second.begin();
+    // cout << "This should be the first key: " << hash_table.begin()->first << endl;
+    for (auto it : hash_table){
+        cout << it.first << endl;
+        i++;
+    }
+    cout << "There was a count of: " << i << endl;
+    // NOTE: try using static to hold the iterator position of the value's list
+    // for (int i = 1; i < 101; i++){
+    //     cout << i << ". ";
+    //     if (list_iterator == hash_table_iterator->second.end()){
+    //         cout << "" << setw(4) << i << ". ";
+    //         cout << *list_iterator << endl;
+    //         hash_table_iterator++;
+    //         list_iterator = hash_table_iterator->second.begin();
+    //         cout << hash_table_iterator->first << endl;
+    //     }
+
+    //     else {
+    //         cout << "" << setw(4) << i << ". ";
+    //         cout << *list_iterator << endl;
+    //         list_iterator++;
+    //     }
+    // }
+    
+    cout << endl << endl;
     cout << "Reached the end of the file" << endl;
     cout << "This is the size of the hash table: " << hash_table.size() << endl;
     cout << "This is the expected grand total: 69893419" << endl;
