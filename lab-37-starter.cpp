@@ -1,4 +1,4 @@
-// COMSC-210 | Jed Aficial | Lab 37
+// COMSC-210 | Jed Aficial | Lab 38
 // github link: https://github.com/jaficial/210-lab-37.git
 
 #include <iostream>
@@ -10,6 +10,8 @@
 using namespace std;
 
 int gen_hash_index(string);
+void menu_display();
+void display_100(map<int, list<string>> &);
 
 /* gen_hash_index iterates through each char of the string
    and adds the char's ASCII value to a total variable.
@@ -22,6 +24,36 @@ int gen_hash_index(string string_data){
     }
 
     return ascii_total;
+}
+
+void menu_display(){
+    cout << "[1] Print the First 100 Entries" << endl;
+    cout << "[2] Search for a Key" << endl;
+    cout << "[3] Remove a Key" << endl;
+    cout << "[4] Exit" << endl;
+}
+
+void display_100(map<int, list<string>> &hash_table){
+    auto hash_table_iterator = hash_table.begin();
+    hash_table_iterator++;
+    auto list_iterator = hash_table_iterator->second.begin();
+    auto last_list_element = hash_table_iterator->second.end();
+    last_list_element--;
+  
+    for (int i = 1; i < 101; i++){
+        if ((hash_table_iterator->second.size() == 1) || (list_iterator == last_list_element)){
+            cout << "" << setw(4) << i << ". " << *list_iterator << endl;
+            hash_table_iterator++;
+            list_iterator = hash_table_iterator->second.begin();
+            last_list_element = hash_table_iterator->second.end();
+            last_list_element--;
+            
+        }
+        else {
+            cout << i << ". " << *list_iterator << endl;
+            list_iterator++;
+        }
+    }
 }
 
 int main() {
@@ -47,35 +79,6 @@ int main() {
             hash_table[temp_hash_index].push_back(temp_data);
         }
         grand_total = grand_total + temp_hash_index;
-    }
-    
-    // NOTE: found out that there is a "0" key and value pair, most likely from the last line of the data.txt file being empty
-    auto hash_table_iterator = hash_table.begin();
-    hash_table_iterator++;
-    
-    // BIG NOTE: I'VE BEEN ACCESSING RANDOM MEMORY, THAT'S WHY THE LOOPS / IF/ELSE CONDITIONS AREN'T WORKING
-
-    auto list_iterator = hash_table_iterator->second.begin();
-    auto last_list_element = hash_table_iterator->second.end();
-    last_list_element--;
-
-    // NOTE: When using the .end() method, it points to one element past the last element of the list
-    //       - so be sure to iterate 1 backwards for the last element  
-    for (int i = 1; i < 101; i++){
-        if ((hash_table_iterator->second.size() == 1) || (list_iterator == last_list_element)){
-            cout << "" << setw(4) << i << ". " << *list_iterator << endl;
-            hash_table_iterator++;
-            list_iterator = hash_table_iterator->second.begin();
-            last_list_element = hash_table_iterator->second.end();
-            last_list_element--;
-            if (i != 100){
-                cout << "Key " << hash_table_iterator->first << ":" << endl;
-            }
-        }
-        else {
-            cout << "" << setw(4) << i << ". " << *list_iterator << endl;
-            list_iterator++;
-        }
     }
 
     fin.close();
