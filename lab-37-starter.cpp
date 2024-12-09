@@ -11,6 +11,9 @@ using namespace std;
 
 int gen_hash_index(string);
 
+/* gen_hash_index iterates through each char of the string
+   and adds the char's ASCII value to a total variable.
+*/
 int gen_hash_index(string string_data){
     int string_length = string_data.length();
     int ascii_total = 0;
@@ -20,28 +23,6 @@ int gen_hash_index(string string_data){
 
     return ascii_total;
 }
-/*
-    THINGS TO DO: 
-    DONE PART 1: "sum_ascii" receives a single string and returns the 
-             sum of the string's ASCII values
-             - do so by type casting a char into an int 
-    DONE PART 2: Read the data text file, into main, then find the GRAND TOTAL ascii value
-             - should be 69893419
-         PART 3: Change "sum_ascii" to "gen_hash_index()" 
-             - Next create the hash table data structure:
-                - Use a std::map named hash_table
-                - Key should be an int (hash index)
-                - value should be a std::list
-                    - the list will contain the strings from the data.txt file
-            - Display the first 100 map entries to the console 
-                - access map elements with ".first" and ".second"
-            - REMEMBER: the value of the map will be a linked list
-            - NOTE: some strings in the data.txt file will be equal to each other, 
-                    put the strings with the same hash index in the same value list 
-                    corresponding to its respective hash index
-                - push string to the front for each string to be appended to a list
-*/
-
 
 int main() {
     ifstream fin("lab-37-data.txt");
@@ -57,7 +38,7 @@ int main() {
         
         // NOTE: checks if the key already exists in the hash_table
         // if index doesnt exist or the index is the same as the last pair, create new pair and insert to hash_table
-        if (hash_table.find(temp_hash_index) == hash_table.end()){ // CITED: from geeksforgeeks: https://www.geeksforgeeks.org/map-find-function-in-c-stl/
+        if (hash_table.find(temp_hash_index) == hash_table.end()){ // CITED: from geeksforgeeks: https://www.geeksforgeeks.org/map-find-function-in-c-stl/ . Cited website to learn how the .find() method works
             hash_table[temp_hash_index].push_back(temp_data);
         }
         
@@ -66,33 +47,20 @@ int main() {
             hash_table[temp_hash_index].push_back(temp_data);
         }
         grand_total = grand_total + temp_hash_index;
-
     }
     
     // NOTE: found out that there is a "0" key and value pair, most likely from the last line of the data.txt file being empty
     auto hash_table_iterator = hash_table.begin();
     hash_table_iterator++;
-    // cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
-    
-    // cout << "These are all the keys in the map: " << endl;
-    
-    // cout << "This is the size of the first list: " << hash_table[601].size() << endl;
     
     // BIG NOTE: I'VE BEEN ACCESSING RANDOM MEMORY, THAT'S WHY THE LOOPS / IF/ELSE CONDITIONS AREN'T WORKING
 
     auto list_iterator = hash_table_iterator->second.begin();
     auto last_list_element = hash_table_iterator->second.end();
     last_list_element--;
-    // WORKS
+
     // NOTE: When using the .end() method, it points to one element past the last element of the list
-    //       - so be sure to iterate 1 backwards
-    if (hash_table_iterator->second.begin() == last_list_element){
-        cout << "" << setw(4) << *list_iterator << endl;
-    }
-    for (auto iter : hash_table){
-        cout << 
-    }
-    
+    //       - so be sure to iterate 1 backwards for the last element  
     for (int i = 1; i < 101; i++){
         if ((hash_table_iterator->second.size() == 1) || (list_iterator == last_list_element)){
             cout << "" << setw(4) << i << ". " << *list_iterator << endl;
@@ -100,28 +68,16 @@ int main() {
             list_iterator = hash_table_iterator->second.begin();
             last_list_element = hash_table_iterator->second.end();
             last_list_element--;
-            cout << "Key " << hash_table_iterator->first << ":" << endl; 
+            if (i != 100){
+                cout << "Key " << hash_table_iterator->first << ":" << endl;
+            }
         }
-
         else {
             cout << "" << setw(4) << i << ". " << *list_iterator << endl;
             list_iterator++;
         }
     }
-    
-    cout << endl << endl;
-    cout << "Reached the end of the file" << endl;
-    cout << "This is the size of the hash table: " << hash_table.size() << endl;
-    cout << "This is the expected grand total: 69893419" << endl;
-    cout << "This is the actual grand total: " << grand_total << endl; 
+
     fin.close();
     return 0;
 }
-
-/* 
-These targets are present in the dataset and can be used for testing:
-536B9DFC93AF
-1DA9D64D02A0
-666D109AA22E
-E1D2665B21EA
-*/
