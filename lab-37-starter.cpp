@@ -68,19 +68,32 @@ int main() {
         grand_total = grand_total + temp_hash_index;
 
     }
-    //
+    
     // NOTE: found out that there is a "0" key and value pair, most likely from the last line of the data.txt file being empty
     map<int, list<string>>::iterator hash_table_iterator = hash_table.begin();
     hash_table_iterator++;
     cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
 
-    static auto list_iterator = hash_table_iterator->second.begin();
-    cout << "This is the size of the actual first key's list: " << list_iterator->size();
-    // cout << "This should be the first key: " << hash_table.begin()->first << endl;
-    // for (auto it : hash_table){
-    //     cout << it.first << endl;
-    //     i++;
-    // }
+    auto list_iterator = hash_table_iterator->second.begin();
+    cout << "This is the size of the actual first key's list: " << list_iterator->size() << endl;
+    cout << "This is the first element of the key's list: " << *list_iterator << endl << endl;
+
+    // NOTE: Something is wrong with the if else conditions
+    for (int i = 1; i < 101; i++){
+        if (list_iterator == hash_table_iterator->second.end()){
+            cout << "" << setw(4) << i << ". ";
+            cout << *list_iterator << endl;
+            hash_table_iterator++;
+            list_iterator = hash_table_iterator->second.begin();
+            cout << hash_table_iterator->first << endl;
+        }
+
+        else {
+            cout << "" << setw(4) << i << ". ";
+            cout << *list_iterator << endl;
+            list_iterator++;
+        }
+    }
     
     // NOTE: try using static to hold the iterator position of the value's list
     // for (int i = 1; i < 101; i++){
