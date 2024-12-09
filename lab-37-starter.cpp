@@ -68,17 +68,20 @@ int main() {
         grand_total = grand_total + temp_hash_index;
 
     }
-    
+    //
     // NOTE: found out that there is a "0" key and value pair, most likely from the last line of the data.txt file being empty
     map<int, list<string>>::iterator hash_table_iterator = hash_table.begin();
-    int i = 0;
-    // static auto list_iterator = hash_table_iterator->second.begin();
+    hash_table_iterator++;
+    cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
+
+    static auto list_iterator = hash_table_iterator->second.begin();
+    cout << "This is the size of the actual first key's list: " << list_iterator->size();
     // cout << "This should be the first key: " << hash_table.begin()->first << endl;
-    for (auto it : hash_table){
-        cout << it.first << endl;
-        i++;
-    }
-    cout << "There was a count of: " << i << endl;
+    // for (auto it : hash_table){
+    //     cout << it.first << endl;
+    //     i++;
+    // }
+    
     // NOTE: try using static to hold the iterator position of the value's list
     // for (int i = 1; i < 101; i++){
     //     cout << i << ". ";
