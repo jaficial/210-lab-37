@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <list>
+#include <iomanip>
 using namespace std;
 
 int gen_hash_index(string);
@@ -69,10 +70,24 @@ int main() {
     }
 
     auto hash_table_iterator = hash_table.begin();
+    static auto list_iterator = hash_table_iterator->second.begin();
+    cout << hash_table_iterator->first << endl;
     // NOTE: try using static to hold the iterator position of the value's list
     for (int i = 1; i < 101; i++){
         cout << i << ". ";
-        auto list_value = hash_table_iterator.second.
+        if (list_iterator == hash_table_iterator->second.end()){
+            cout << "" << setw(4) << i << ". ";
+            cout << *list_iterator << endl;
+            hash_table_iterator++;
+            list_iterator = hash_table_iterator->second.begin();
+            cout << hash_table_iterator->first << endl;
+        }
+
+        else {
+            cout << "" << setw(4) << i << ". ";
+            cout << *list_iterator << endl;
+            list_iterator++;
+        }
     }
     
     cout << "Reached the end of the file" << endl;
