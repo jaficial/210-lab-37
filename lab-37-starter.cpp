@@ -72,16 +72,23 @@ int main() {
     // NOTE: found out that there is a "0" key and value pair, most likely from the last line of the data.txt file being empty
     auto hash_table_iterator = hash_table.begin();
     hash_table_iterator++;
-    // cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
-
-    auto list_iterator = hash_table_iterator->second.begin();
-    auto last_list_iter = hash_table_iterator->second.end();
+    cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
+    for (auto iter : hash_table[600]){
+        cout << iter << endl;
+    }
+    cout << "These are all the keys in the map: " << endl;
+    for (auto iter : hash_table){
+        cout << iter.first << endl;
+    }
+    cout << "This is the size of the first list: " << hash_table[602].size() << endl;
+    cout << "SHOULD END HERE" << endl;
+    // auto list_iterator = hash_table_iterator->second.begin();
+    // auto last_list_iter = hash_table_iterator->second.end();
     // cout << "This is the size of the actual first key's list: " << list_iterator->size() << endl;
-    cout << "This is the first element of the key's list: " << *list_iterator << endl;
-    cout << "This is the last element of the key's list: " << *last_list_iter << endl;
+    // cout << "This is the first element of the key's list: " << *list_iterator << endl;
     // list_iterator++;
     // cout << "This is the next element of the key's list: " << *list_iterator << endl;
-    cout << "SHOULD END HERE" << endl;
+
     // NOTE: Something is wrong with the if else conditions
     //       - also, the key isn't outputting correctly
     // for (int i = 1; i < 101; i++){
