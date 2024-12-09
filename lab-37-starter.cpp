@@ -14,6 +14,7 @@ void menu_display();
 void display_100(map<int, list<string>> &);
 bool search_key(map<int, list<string>> &, int);
 void remove_key(map<int, list<string>> &, int);
+void modify_key(map<int, list<string>> &, int);
 
 /* gen_hash_index iterates through each char of the string
    and adds the char's ASCII value to a total variable.
