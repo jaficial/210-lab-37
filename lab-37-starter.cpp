@@ -12,7 +12,7 @@ using namespace std;
 int gen_hash_index(string);
 void menu_display();
 void display_100(map<int, list<string>> &);
-void search_key(map<int, list<string>> &);
+void search_key(map<int, list<string>> &, int);
 
 /* gen_hash_index iterates through each char of the string
    and adds the char's ASCII value to a total variable.
@@ -60,8 +60,13 @@ void display_100(map<int, list<string>> &hash_table){
     }
 }
 
-void search_key(map<int, list<string>> &){
-
+void search_key(map<int, list<string>> &hash_table, int hash_key){
+    if (hash_table.find(hash_key) != hash_table.end()){
+        cout << hash_key << " is an existing key in the hash table." << endl;
+    }
+    else {
+        cout << hash_key << " does not exist in the hash table." << endl;
+    }
 }
 
 int main() {
@@ -90,6 +95,7 @@ int main() {
     }
 
     int interaction = 0;
+    int search_value = 0;
 
     while (interaction != 5){
         menu_display();
@@ -101,6 +107,12 @@ int main() {
 
         else if (interaction == 1){
             display_100(hash_table);
+        }
+
+        else if (interaction == 2){
+            cout << endl << "Input a key you'd like to search up: ";
+            cin >> search_value;
+            search_key(hash_table, search_value);
         }
     }
 
