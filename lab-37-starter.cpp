@@ -73,15 +73,15 @@ int main() {
     auto hash_table_iterator = hash_table.begin();
     hash_table_iterator++;
     cout << "This should be the actual first key: " << hash_table_iterator->first << endl;
-    for (auto iter : hash_table[600]){
-        cout << iter << endl;
-    }
+    
     cout << "These are all the keys in the map: " << endl;
     for (auto iter : hash_table){
-        cout << iter.first << endl;
+        cout << "This is the size of key " << iter.first << ": " << iter.second.size() << endl;
     }
-    cout << "This is the size of the first list: " << hash_table[602].size() << endl;
-    cout << "SHOULD END HERE" << endl;
+    cout << "This is the size of the first list: " << hash_table[601].size() << endl;
+   
+    // BIG NOTE: I'VE BEEN ACCESSING RANDOM MEMORY, THAT'S WHY THE LOOPS / IF/ELSE CONDITIONS AREN'T WORKING
+
     // auto list_iterator = hash_table_iterator->second.begin();
     // auto last_list_iter = hash_table_iterator->second.end();
     // cout << "This is the size of the actual first key's list: " << list_iterator->size() << endl;
@@ -89,7 +89,6 @@ int main() {
     // list_iterator++;
     // cout << "This is the next element of the key's list: " << *list_iterator << endl;
 
-    // NOTE: Something is wrong with the if else conditions
     //       - also, the key isn't outputting correctly
     // for (int i = 1; i < 101; i++){
     //     if (list_iterator == last_list_iter){
