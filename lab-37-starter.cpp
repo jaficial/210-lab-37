@@ -50,7 +50,6 @@ int main() {
     
     map <int, list<string>> hash_table;
     
-    // NOTE: need to have test if the hash index is already in the map
     while (!fin.eof()){
         getline(fin, temp_data);
         temp_hash_index = gen_hash_index(temp_data);
@@ -58,20 +57,26 @@ int main() {
         // NOTE: checks if the key already exists in the hash_table
         // if index doesnt exist or the index is the same as the last pair, create new pair and insert to hash_table
         if (hash_table.find(temp_hash_index) == hash_table.end()){ // CITED: from geeksforgeeks: https://www.geeksforgeeks.org/map-find-function-in-c-stl/
-            string value_list_name = to_string(temp_hash_index);
             hash_table[temp_hash_index].push_back(temp_data);
         }
         
+        // if index exists and it isn't the last index, insert it into the hash_table's key's list
         else if (hash_table.find(temp_hash_index) != hash_table.end()){
-
+            hash_table[temp_hash_index].push_back(temp_data);
         }
-        
+        grand_total = grand_total + temp_hash_index;
+
+    }
+
+    auto hash_table_iterator = hash_table.begin();
+    for (int i = 0; i < 100; i++){
 
     }
     
     cout << "Reached the end of the file" << endl;
     cout << "This is the size of the hash table: " << hash_table.size() << endl;
-
+    cout << "This is the expected grand total: 69893419" << endl;
+    cout << "This is the actual grand total: " << grand_total << endl; 
     fin.close();
     return 0;
 }
