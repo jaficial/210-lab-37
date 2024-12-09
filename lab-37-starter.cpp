@@ -80,7 +80,30 @@ void remove_key(map<int, list<string>> &hash_table, int hash_key){
 }
 
 void modify_key(map<int, list<string>> &hash_table, int hash_key){
-    // modify_key
+    int menu_choice = 0;
+    cout << "[1] Pop Front Element" << endl;
+    cout << "[2] Pop Back Element" << endl;
+    cout << "[3] Return Back to Main Menu" << endl;
+    cin >> menu_choice;
+    
+    if (menu_choice == 1){
+        hash_table[hash_key].pop_front();
+        cout << hash_key << " was modified from the hash table." << endl;
+    }
+
+    else if (menu_choice == 2){
+        hash_table[hash_key].pop_back();
+        cout << hash_key << " was modified from the hash table." << endl;
+    }
+
+    else if (menu_choice < 1 || menu_choice > 3){
+        cout << "Invalid Choice" << endl;
+    }
+
+    else {
+        cout << "Nothing was modified from the hash table." << endl;
+    }
+    
 }
 
 void add_key(map<int, list<string>> &hash_table, int hash_key, string value){
@@ -153,7 +176,7 @@ int main() {
             }
             else {
                 modify_key(hash_table, key_value);
-                cout << key_value << "was modified from the hash table." << endl;
+
             }
         }
 
